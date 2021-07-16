@@ -1,0 +1,88 @@
+﻿@using Cliente_Biblioteca_Babel.Models;
+@using Cliente_Biblioteca_Babel.Helpers;
+
+@{
+    ViewBag.Title = "Index";
+    List<LocalizacionModel> locations = (List<LocalizacionModel>)ViewBag.locations;
+    List<VolumenModel> vols = (List<VolumenModel>)ViewBag.vols;
+    string localizacion = "";
+}
+
+<section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+    <div class="container mt-5">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h1>Biblioteca de <span class="text-warning">Babel</span></h1>
+                <p class="lead my-4">
+                    Aquí se listan todos los volúmenes y sus localizaciones dentro de la biblioteca.
+                    Para ABC completo usar los links del navbar.
+                    PD: Gracias por la oprotunidad :D
+                </p>
+            </div>
+            <div style="width: 5%;"></div>
+            <img class="img-fluid w-50 d-none d-sm-block" src="~/Content/img/bookshelves.svg" alt="Bookshelves" style="height: 300px;">
+        </div>
+    </div>
+</section>
+
+<section class="px-5 py-3">
+    <div class="container">
+        <h3>Lista de Volúmenes</h3>
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Número de Volúmen</th>
+                        <th>Título</th>
+                        <th>Localización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (VolumenModel v in vols)
+                    {
+                        <tr>
+                            <td>@v.Id</td>
+                            <td>@v.No_Volumen</td>
+                            <td>@v.Titulo</td>
+                            @{localizacion = locations.Find(item => item.Id == v.Id_Localizacion).Sala;}
+                            <td>@localizacion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="px-5 py-3">
+    <div class="container">
+        <h3>Lista de Localizaciones</h3>
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Número de Estante</th>
+                        <th>Sala</th>
+                        <th>Número de Librero</th>
+                        <th>Posición del Volúmen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (LocalizacionModel l in locations)
+                    {
+                        <tr>
+                            <td>@l.Id</td>
+                            <td>@l.Estante</td>
+                            <td>@l.Sala</td>
+                            <td>@l.Librero</td>
+                            <td>@l.Posicion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,56 @@
+﻿@model Cliente_Biblioteca_Babel.Models.LocalizacionModel
+
+@{
+    ViewBag.Title = "Delete";
+    int idLocation = ViewBag.ID;
+}
+
+<h2>Eliminando Localización</h2>
+
+<h3>¿Seguro que quiere eliminar esta localización?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Estante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sala)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Librero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Librero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Posicion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Posicion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Localizacion", FormMethod.Post, new { id = idLocation })) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eiminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

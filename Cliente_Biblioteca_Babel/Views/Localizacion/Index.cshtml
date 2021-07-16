@@ -1,0 +1,96 @@
+﻿@model Cliente_Biblioteca_Babel.Models.LocalizacionModel
+@using Cliente_Biblioteca_Babel.Models;
+
+@{
+    ViewBag.Title = "Index";
+    List<LocalizacionModel> locations = (List<LocalizacionModel>)ViewBag.locations;
+}
+
+<section>
+    <div class="container">
+        <div style="height: 100px;"></div>
+        <h2 class="text-center"><i class="fas fa-map-marked-alt"></i> Lista de Localizaciones </h2>
+        <div class="row">
+            <p>
+                <button class="btn btn-success btn-round btn-sm ml-3" type="button" id="btnAgregarLocalizacion">
+                    <i class="fas fa-plus"></i> Nueva Localización
+                </button>
+            </p>
+        </div>
+        @using (Html.BeginForm("Crear", "Localizacion", FormMethod.Post))
+        {
+    <div id="panelAgregarLocalizacion">
+        <h6 class="mb-3">Ingrese los datos...</h6>
+        <div class="form-group row justify-content-center">
+            <div class="col-md-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Estante)
+                @Html.EditorFor(model => model.Estante, new { htmlAttributes = new { @class = "form-control", @id = "inputEstante", @placeholder = "0", @required = "" } })
+                @Html.ValidationMessageFor(model => model.Estante, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Sala)
+                @Html.EditorFor(model => model.Sala, new { htmlAttributes = new { @class = "form-control", @id = "inputSala", @placeholder = "Sala de...", @required = "" } })
+                @Html.ValidationMessageFor(model => model.Sala, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Librero)
+                @Html.EditorFor(model => model.Librero, new { htmlAttributes = new { @class = "form-control", @id = "inputLibrero", @placeholder = "0", @required = "" } })
+                @Html.ValidationMessageFor(model => model.Librero, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Posicion)
+                @Html.EditorFor(model => model.Posicion, new { htmlAttributes = new { @class = "form-control", @id = "inputPosicion", @placeholder = "...", @required = "" } })
+                @Html.ValidationMessageFor(model => model.Posicion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row justify-content-center mt-3 px-2">
+            <button type="submit" class="btn btn-primary btn-sm btn-round d-block">
+                <i class="far fa-save"></i> Guardar Localizacion
+            </button>
+        </div>
+    </div>
+        }
+    </div>
+</section>
+
+<section class="px-5 py-3">
+    <div class="container">
+        <h3>Lista de Localizaciones</h3>
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Número de Estante</th>
+                        <th>Sala</th>
+                        <th>Número de Librero</th>
+                        <th>Posición del Volúmen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (LocalizacionModel l in locations)
+                    {
+                        <tr>
+                            <td>@l.Id</td>
+                            <td>@l.Estante</td>
+                            <td>@l.Sala</td>
+                            <td>@l.Librero</td>
+                            <td>@l.Posicion</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = l.Id })
+                                |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = l.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
