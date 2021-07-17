@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Cliente_Biblioteca_Babel.Helpers
 {
@@ -14,7 +15,7 @@ namespace Cliente_Biblioteca_Babel.Helpers
     {
         
 
-        public static async Task<LocalizacionModel> ObtenerLocalizacion(short Id)
+        public static async Task<List<LocalizacionModel>> ObtenerLocalizaciones()
         {
             // URL Base de servicio REST
             string baseUrl = "https://localhost:44388/api/";
@@ -27,7 +28,7 @@ namespace Cliente_Biblioteca_Babel.Helpers
                 cliente.DefaultRequestHeaders.Clear();
                 cliente.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 // Llamada al servicio, método GET para obtener todas las localizaciones
-                HttpResponseMessage response = await cliente.GetAsync("Localizacion/Get/" + Id);
+                HttpResponseMessage response = await cliente.GetAsync("Localizacion/Get");
                 if (response.IsSuccessStatusCode)
                 {
                     var data = response.Content.ReadAsStringAsync().Result;
@@ -36,7 +37,7 @@ namespace Cliente_Biblioteca_Babel.Helpers
                 }
             }
 
-            return localizaciones[0];
+            return localizaciones;
         }
     }
 }

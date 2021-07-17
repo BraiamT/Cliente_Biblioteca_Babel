@@ -16,10 +16,11 @@ namespace Cliente_Biblioteca_Babel.Models
         [Display(Name = "Título del Volúmen")]
         [Required]
         public string Titulo { get; set; }
-        [Required]
-        public short Id_Localizacion { get; set; }
         [Display(Name = "Localización")]
         [Required]
-        public string Localizacion { get; set; }
+        public short Id_Localizacion { get; set; }
+        [Display(Name = "Ubicado En")]
+        [Required]
+        public string Ubicado_En { get; set; }
     }
 }

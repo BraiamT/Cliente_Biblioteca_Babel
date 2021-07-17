@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalizacionController.cs" />
+    <Compile Include="Controllers\VolumenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +204,9 @@
     <Content Include="Views\Localizacion\Index.cshtml" />
     <Content Include="Views\Localizacion\Edit.cshtml" />
     <Content Include="Views\Localizacion\Delete.cshtml" />
+    <Content Include="Views\Volumen\Index.cshtml" />
+    <Content Include="Views\Volumen\Edit.cshtml" />
+    <Content Include="Views\Volumen\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

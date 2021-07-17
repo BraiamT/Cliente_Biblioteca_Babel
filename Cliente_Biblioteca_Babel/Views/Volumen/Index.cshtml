@@ -1,0 +1,100 @@
+﻿@model Cliente_Biblioteca_Babel.Models.VolumenModel
+@using Cliente_Biblioteca_Babel.Models;
+
+@{
+    ViewBag.Title = "Volúmenes";
+    List<VolumenModel> vols = (List<VolumenModel>)ViewBag.volumenes;
+    List<LocalizacionModel> localizaciones = ViewBag.localizaciones;
+}
+
+<section>
+    <div class="container">
+        <div style="height: 60px;"></div>
+        <h2 class="text-center"><i class="fas fa-book"></i> Lista de Volúmenes </h2>
+        <div class="row">
+            <p>
+                <button class="btn btn-success btn-round btn-sm ml-3" type="button" id="btnAgregarLocalizacion">
+                    <i class="fas fa-plus"></i> Nuevo Volúmen
+                </button>
+            </p>
+        </div>
+        @using (Html.BeginForm("Crear", "Volumen", FormMethod.Post))
+        {
+            <div id="panelAgregarLocalizacion">
+                <h6 class="mb-3">Ingrese los datos...</h6>
+                <div class="form-group row justify-content-center">
+                    <div class="col-md-4">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.No_Volumen)
+                        @Html.EditorFor(model => model.No_Volumen, new { htmlAttributes = new { @class = "form-control", @placeholder = "0", @required = "" } })
+                        @Html.ValidationMessageFor(model => model.No_Volumen, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Titulo)
+                        @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Título...", @required = "" } })
+                        @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.Id_Localizacion)
+                        <select id="Id_Localizacion" class="form-control" name="Id_Localizacion">
+                            @foreach (LocalizacionModel l in localizaciones)
+                            {
+                                <option value="@l.Id">
+                                    @String.Concat(l.Sala +
+                                        " en el estante " + l.Estante +
+                                        " en el librero " + l.Librero +
+                                        " con posición " + l.Posicion)
+                                </option>
+                            }
+                        </select>
+                        @Html.ValidationMessage("Id_Localizacion", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center mt-3 px-2">
+                    <button type="submit" class="btn btn-primary btn-sm btn-round d-block">
+                        <i class="far fa-save"></i> Guardar Volúmen
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="px-5 py-3">
+    <div class="container">
+        <h3>Lista de Volúmenes</h3>
+        <div class="table-responsive mt-4">
+            <table class="table table-borderless table-striped table-hover align-middle text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr class="table-dark">
+                        <th width="10%">ID</th>
+                        <th width="18%">Número de Volúmen</th>
+                        <th width="25%">Título</th>
+                        <th width="35%">Localizado En</th>
+                        <th width="12%">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (VolumenModel v in vols)
+                    {
+                        <tr>
+                            <td>@v.Id</td>
+                            <td>@v.No_Volumen</td>
+                            <td>@v.Titulo</td>
+                            <td>@v.Ubicado_En</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = v.Id })
+                                |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = v.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+

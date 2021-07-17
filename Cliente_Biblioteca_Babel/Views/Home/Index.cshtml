@@ -5,7 +5,6 @@
     ViewBag.Title = "Index";
     List<LocalizacionModel> locations = (List<LocalizacionModel>)ViewBag.locations;
     List<VolumenModel> vols = (List<VolumenModel>)ViewBag.vols;
-    string localizacion = "";
 }
 
 <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
@@ -29,13 +28,13 @@
     <div class="container">
         <h3>Lista de Volúmenes</h3>
         <div class="table-responsive mt-4">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-borderless table-striped table-hover align-middle text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr class="table-dark">
                         <th>ID</th>
                         <th>Número de Volúmen</th>
                         <th>Título</th>
-                        <th>Localización</th>
+                        <th>Localizado En</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,8 +44,7 @@
                             <td>@v.Id</td>
                             <td>@v.No_Volumen</td>
                             <td>@v.Titulo</td>
-                            @{localizacion = locations.Find(item => item.Id == v.Id_Localizacion).Sala;}
-                            <td>@localizacion</td>
+                            <td>@v.Ubicado_En</td>
                         </tr>
                     }
                 </tbody>
@@ -59,9 +57,9 @@
     <div class="container">
         <h3>Lista de Localizaciones</h3>
         <div class="table-responsive mt-4">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-borderless table-striped table-hover align-middle text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr class="table-dark">
                         <th>ID</th>
                         <th>Número de Estante</th>
                         <th>Sala</th>

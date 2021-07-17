@@ -5,52 +5,60 @@
     int idLocation = ViewBag.ID;
 }
 
-<h2>Eliminando Localización</h2>
+<section>
+    <div class="container">
+        <div style="height: 60px;"></div>
+        <a href="/Localizacion" class="h2 text-dark"><i class="fas fa-arrow-circle-left"></i></a>
+        <h2 class="text-center"> Eliminando Localización </h2>
+        <p class="lead mt-3">¿Seguro que quiere eliminar esta localización?</p>
 
-<h3>¿Seguro que quiere eliminar esta localización?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Estante)
-        </dt>
+        <div class="row justify-content-center">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Estante)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Estante)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Estante)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sala)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sala)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Sala)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Sala)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Librero)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Librero)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Librero)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Librero)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Posicion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Posicion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Posicion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Posicion)
+                </dd>
 
-    </dl>
+            </dl>
 
-    @using (Html.BeginForm("Delete", "Localizacion", FormMethod.Post, new { id = idLocation })) {
-        @Html.AntiForgeryToken()
+            @using (Html.BeginForm("Delete", "Localizacion", FormMethod.Post, new { id = idLocation }))
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eiminar" class="btn btn-danger" /> |
-            @Html.ActionLink("Volver", "Index")
+                <div class="form-actions">
+                    <input type="submit" value="Eiminar" class="btn btn-danger" />
+                </div>
+            }
         </div>
-    }
-</div>
+    </div>
+</section>
+
+
+

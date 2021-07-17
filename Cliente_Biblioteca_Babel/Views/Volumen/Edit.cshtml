@@ -1,0 +1,56 @@
+﻿@model Cliente_Biblioteca_Babel.Models.VolumenModel
+@using Cliente_Biblioteca_Babel.Models;
+
+@{
+    ViewBag.Title = "Editar Volúmen";
+    List<LocalizacionModel> localizaciones = ViewBag.localizaciones;
+}
+
+<section>
+    <div class="container">
+        <div style="height: 60px;"></div>
+        <a href="/Volumen" class="h2 text-dark"><i class="fas fa-arrow-circle-left"></i></a>
+        <h2 class="text-center"> Editando Volúmen </h2>
+        @using (Html.BeginForm("Edit", "Volumen", FormMethod.Post))
+        {
+            <h6 class="mb-3">Edite los datos...</h6>
+            <div class="form-group row justify-content-center">
+                <div class="col-md-4">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.No_Volumen)
+                    @Html.EditorFor(model => model.No_Volumen, new { htmlAttributes = new { @class = "form-control", @placeholder = "0", @required = "" } })
+                    @Html.ValidationMessageFor(model => model.No_Volumen, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.Titulo)
+                    @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Título...", @required = "" } })
+                    @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.Id_Localizacion)
+                    <select id="Id_Localizacion" class="form-control" name="Id_Localizacion">
+                        @foreach (LocalizacionModel l in localizaciones)
+                        {
+                            <option value="@l.Id">
+                                @String.Concat(l.Sala +
+                                    " en el estante " + l.Estante +
+                                    " en el librero " + l.Librero +
+                                    " con posición " + l.Posicion)
+                            </option>
+                        }
+                    </select>
+                    @Html.ValidationMessage("Id_Localizacion", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row justify-content-center mt-4 px-1">
+                <button type="submit" class="btn btn-dark btn-round">
+                    <i class="far fa-save"></i> Guardar Volúmen
+                </button>
+            </div>
+        }
+    </div>
+</section>
+
+
+

@@ -1,0 +1,61 @@
+﻿@model Cliente_Biblioteca_Babel.Models.VolumenModel
+
+@{
+    ViewBag.Title = "Delete";
+    int idVolumen = ViewBag.ID;
+}
+
+<section>
+    <div class="container">
+        <div style="height: 60px;"></div>
+        <a href="/Volumen" class="h2 text-dark"><i class="fas fa-arrow-circle-left"></i></a>
+        <h2 class="text-center"> Eliminando Volúmen </h2>
+        <p class="lead mt-3">¿Seguro que quiere eliminar este volúmen?</p>
+
+        <div class="row justify-content-center">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.No_Volumen)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.No_Volumen)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Titulo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Id_Localizacion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Id_Localizacion)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ubicado_En)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ubicado_En)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm("Delete", "Volumen", FormMethod.Post, new { id = idVolumen }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions">
+                    <input type="submit" value="Eiminar" class="btn btn-danger" />
+                </div>
+            }
+        </div>
+    </div>
+</section>
